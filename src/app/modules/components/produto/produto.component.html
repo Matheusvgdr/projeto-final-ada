@@ -1,0 +1,30 @@
+<div class="flex items-center w-full gap-[16px] overflow-auto">
+  <div class="flex flex-col gap-[8px]">
+    <div
+      class="p-[16px] h-[308px] w-[262px] bg-cover bg-center bg-no-repeat rounded-xl flex flex-col justify-between"
+      [style.backgroundImage]="'url(' + produto.imagem + ')'"
+    >
+      <div class="flex flex-col gap-[6px] text-[10px]">
+        <div
+          class="py-[4px] px-3 rounded-[6px] bg-white w-fit flex items-center gap-[8px]"
+        >
+          <span class="font-bold">NOVO</span>
+        </div>
+        <div class="py-[4px] px-3 rounded-[6px] bg-emerald-500 w-fit">
+          <span class="font-bold text-white"> - {{produto.desconto}}%</span>
+        </div>
+      </div>
+      <button
+        (click)="navegar(produto.id)"
+        class="py-[12px] w-full bg-zinc-800 flex items-center justify-center gap-3  border-none rounded-[8px] cursor-pointer hover:-translate-y-1 duration-500 text-white font-bold text-[14px]"
+      >
+        Visualizar
+            <lucide-angular [img]="visualizacao"></lucide-angular>
+      </button>
+    </div>
+    <div class="flex flex-col gap-[4px]">
+      <span class="font-semibold">{{ produto.titulo }}</span>
+      <span class="text-[12px] font-medium">{{ produto.valor  |currency:'BRL' }}</span>
+    </div>
+  </div>
+</div>

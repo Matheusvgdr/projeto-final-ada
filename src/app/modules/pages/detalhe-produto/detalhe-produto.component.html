@@ -1,0 +1,39 @@
+<div
+  class="xl:flex xl:items-center xl:justify-center lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center xl:pt-10"
+>
+  <section
+    class="px-[32px] flex flex-col gap-7 xl:w-[70%] lg:w-[70%] md:w-[85%]"
+  >
+    <div class="flex flex-col gap-7 xl:gap-[60px] xl:flex-row">
+      <div
+        class="w-full h-[320px] xl:h-[600px] lg:h-[620px] md:h-[520px] xl:w-[550px] flex items-center justify-center rounded-xl bg-cover bg-center bg-no-repeat"
+        [style.backgroundImage]="'url(' + produto()?.imagem + ')'"
+      ></div>
+      <div class="flex flex-col gap-[12px] xl:gap-[40px] xl:w-[35%]">
+        <div class="flex flex-col gap-[12px]">
+          <div class="flex items-center gap-1">
+            @for (item of arrayEstrelas(); track $index) {
+            <i-lucide [img]="estrela" class="w-3 h-3"></i-lucide>
+            }
+          </div>
+          <p class="text-[40px] font-bold">{{ produto()?.titulo }}</p>
+          <p>
+            {{ produto()?.descricao }}
+          </p>
+          <p class="text-[28px] font-medium">
+            {{ produto()?.valor | currency : "BRL" }}
+          </p>
+        </div>
+        <button
+          (click)="adicionarProdutoCarrinho()"
+          class="py-[12px] flex items-center justify-center gap-3 hover:-translate-y-1 duration-500 cursor-pointer w-full bg-indigo-500 border-none rounded-[8px] text-white font-bold text-[14px]"
+        >
+          Adicionar ao carrinho
+          <lucide-angular [img]="adicionar"></lucide-angular>
+        </button>
+      </div>
+    </div>
+    <div class="h-[2px] w-full bg-[#F3F5F7] rounded-full"></div>
+    <app-lista-review [produtoId]="produto()?.id"></app-lista-review>
+  </section>
+</div>

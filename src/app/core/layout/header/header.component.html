@@ -1,0 +1,88 @@
+<div
+  class="xl:flex xl:items-center xl:justify-center lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center"
+>
+  <header
+    class="flex items-center justify-between w-full text-zinc-800 py-[18px] px-[32px] xl:w-[70%] lg:w-[70%] md:w-[85%]"
+  >
+    <div class="flex items-center gap-2">
+      <button
+        class="xl:hidden lg:hidden md:hidden cursor-pointer"
+        (click)="visibilidade = true"
+      >
+        <lucide-angular [img]="menu"></lucide-angular>
+      </button>
+
+      <a
+        [routerLink]="['/']"
+        class="font-semibold xl:text-[24px] lg:text-[24px] md:text-[20px]"
+        >3legant</a
+      >
+    </div>
+
+    <ul
+      class="hidden text-[14px] flex gap-12 font-medium xl:flex lg:flex md:flex"
+    >
+      @for (item of itensMenu; track $index) {
+      <li>
+        <a [routerLink]="item.rota" class="cursor-pointer">{{ item.label }}</a>
+      </li>
+      }
+    </ul>
+
+    <button (click)="navegar()" class="flex items-center gap-1 cursor-pointer">
+      <lucide-angular [img]="carrinho"></lucide-angular>
+      @if ((itensCarrinho$ | async) != 0) {
+      <div
+        class="w-6 h-6 animate-bounce rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-semibold text-white"
+      >
+        {{ itensCarrinho$ | async }}
+      </div>
+      }
+    </button>
+  </header>
+</div>
+<p-drawer [(visible)]="visibilidade" header="3legant">
+  <nav class="flex flex-col justify-between h-full">
+    <ul class="flex flex-col gap-3">
+      @for (item of itensMenu; track $index) {
+      <li>
+        <a
+          (click)="visibilidade = false"
+          [routerLink]="item.rota"
+          class="cursor-pointer"
+          >{{ item.label }}</a
+        >
+      </li>
+      @if (!($index + 1 == itensMenu.length)) {
+      <div class="h-[2px] w-full bg-[#F3F5F7] rounded-full"></div>
+      } }
+    </ul>
+
+    <div class="flex flex-col gap-6">
+      <div class="flex justify-between">
+        <p class="font-semibold text-[18px]">Carrinho</p>
+        <button
+          (click)="visibilidade = false; navegar()"
+          class="flex items-center gap-1 cursor-pointer"
+        >
+          <lucide-angular [img]="carrinho"></lucide-angular>
+          @if ((itensCarrinho$ | async) != 0) {
+          <div
+            class="w-6 h-6 animate-bounce rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-semibold text-white"
+          >
+            {{ itensCarrinho$ | async }}
+          </div>
+          }
+        </button>
+      </div>
+      <div class="h-[2px] w-full bg-[#F3F5F7] rounded-full"></div>
+      <button
+        (click)="visibilidade = false"
+        class="py-[12px] cursor-pointer w-full bg-rose-500 border-none rounded-[8px] text-white font-bold text-[14px] flex items-center gap-3 justify-center"
+      >
+        Voltar
+        <lucide-angular [img]="voltar" class="w-4"></lucide-angular>
+      </button>
+    </div>
+  </nav>
+</p-drawer>

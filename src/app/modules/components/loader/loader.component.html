@@ -1,0 +1,17 @@
+@if (loadingService.loading$ | async) {
+<div
+  class="fixed z-50 inset-0 flex items-center bg-zinc-800/20 h-screen w-full justify-center"
+>
+  <div
+    class="flex bg-white rounded-[10px] p-3 text-zinc-800 items-center justify-start gap-2"
+  >
+    <p-progress-spinner
+      strokeWidth="8"
+      fill="transparent"
+      animationDuration=".5s"
+      [style]="{ width: '20px', height: '20px' }"
+    />
+    Carregando...
+  </div>
+</div>
+}

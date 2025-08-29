@@ -1,59 +1,40 @@
-# ProjetoAda
+# 🚀 Projeto Ada
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Este é um projeto desenvolvido com Angular 19, utilizando TailwindCSS para estilização, PrimeNG para componentes visuais e NgRx para gerenciamento de estado. O objetivo é fornecer uma base moderna e escalável para aplicações web.
 
-## Development server
+## 📦 Tecnologias Utilizadas
 
-To start a local development server, run:
+- **Angular 19** – Framework principal
+- **NgRx Store** – Gerenciamento de estado reativo
+- **PrimeNG** – Biblioteca de componentes UI
+- **TailwindCSS** – Estilização utilitária
+- **ScrollReveal** – Animações de entrada
+- **Lucide Angular** – Ícones modernos
+- **JSON Server** – API fake para desenvolvimento
+- **Ngx-Mask** – Máscaras de input
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📁 Estrutura Esperada
 
-## Code scaffolding
+O projeto segue a estrutura padrão do Angular CLI, com separação clara de módulos, componentes, serviços e estados.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🧪 Testes
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Os testes são escritos com Jasmine e executados via Karma. Para rodar os testes:
 
 ```bash
-ng build
+npm test
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Simulando o backend com JSON-Server
 
-## Running unit tests
+O projeto utiliza o **json-server** para simular a API de produtos e reviews.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Executando
+
+O `json-server` já está listado nas dependências do projeto. Então para executar basta rodar o comando
 
 ```bash
-ng test
+npx json-server db.json
+
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

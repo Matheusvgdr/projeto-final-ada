@@ -1,0 +1,38 @@
+@if ((itensCarrinho$ | async)?.length == 0) {
+<div class="border border-dashed border-gray-300 rounded-xl bg-white p-5 relative flex flex-col items-center gap-2">
+      <lucide-angular [img]="msg" class="w-14 h-14 text-rose-500"></lucide-angular>
+  <div class="flex flex-col items-center gap-1">
+    <p class="text-[14px] font-medium text-justify">Carrinho vazio !</p>
+    <p class="text-[12px]  text-center">Não há itens em seu carrinho</p>
+  </div>
+</div>
+}@else {
+<div class="flex flex-col gap-5 pb-10">
+  <p class="font-medium">Produtos</p>
+
+  <div
+    class="xl:grid xl:grid-cols-2 xl:gap-10 lg:grid lg:grid-cols-2 lg:gap-10 flex flex-col gap-5"
+  >
+    @for (item of itensCarrinho$ | async; track $index) {
+    <app-item-carrinho [produto]="item"></app-item-carrinho>
+    }
+  </div>
+
+  <p class="text-[14px] xl:text-[18px] lg:text-[18px] flex justify-between">
+    Total:
+    <span class="text-[20px] font-bold">{{
+      total$ | async | currency : "BRL"
+    }}</span>
+  </p>
+
+  <div class="hidden xl:block h-[2px] w-full bg-[#F3F5F7] rounded-full"></div>
+
+  <button
+    (click)="navegar()"
+    class="py-[12px] flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full bg-indigo-500 border-none rounded-[8px] text-white font-bold text-[14px]"
+  >
+    Finalizar pedido
+    <lucide-angular [img]="compras"></lucide-angular>
+  </button>
+</div>
+}

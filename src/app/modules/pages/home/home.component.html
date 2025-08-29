@@ -1,0 +1,128 @@
+<div class="xl:flex xl:items-center xl:justify-center lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center">
+  <section class="flex flex-col gap-16 xl:gap-[40px] leading-tight xl:w-[70%] lg:w-[70%] md:w-[85%]">
+    <section class="px-[32px] flex flex-col gap-7 xl:gap-[40px]">
+      <div
+        class=" reveal-esquerda w-full h-[320px] xl:h-[520px] flex items-center justify-center rounded-xl bg-[url('/img/banner-bg-mob.svg')] xl:bg-[url('/img/banner-bg.svg')] bg-cover bg-center bg-no-repeat"
+      ></div>
+      <div class=" reveal-esquerda flex flex-col gap-5 xl:flex-row xl:items-center">
+        <span class="text-[40px] font-bold xl:text-[36px]">
+          Aconchegante /</span
+        >
+        <span class="text-[14px] text-gray-500"
+          ><strong class="text-zinc-800">3legant </strong>é uma loja de
+          presentes e decorações com sede em HCMC, Vietnã. Est. desde 2019.
+        </span>
+      </div>
+      <div class="flex flex-col gap-5 xl:flex-row lg:flex-row">
+        <div
+          class="reveal-esquerda shadow-xl/10 h-[377px] w-full bg-[url('/img/cadeira.svg')] bg-cover bg-center bg-no-repeat rounded-xl xl:w-[50%] xl:h-[630px] lg:w-[50%] lg:h-[630px]"
+        >
+          <div class="flex flex-col p-[32px]">
+            <span class="text-[28px] xl:text-[34px] lg:text-[34px] font-bold">Sala de estar</span>
+            <span
+              class="text-[12px] xl:text-[16px] underline underline-offset-1 flex items-center gap-1"
+              >Compre aqui <i-lucide [img]="setaDireitra" class="w-3"></i-lucide
+            ></span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5 xl:w-[50%] lg:w-[50%]">
+          <div
+            class="reveal-esquerda shadow-xl/10 h-[180px] w-full bg-[url('/img/movel.svg')] bg-cover bg-center lg:bg-right bg-no-repeat rounded-xl xl:h-full lg:h-full"
+          >
+            <div class="flex flex-col p-[32px]">
+              <span class="text-[28px] xl:text-[34px] lg:text-[34px] font-bold">Quarto</span>
+              <span
+                class="text-[12px] xl:text-[16px] underline underline-offset-1 flex items-center gap-1"
+                >Compre aqui
+                <i-lucide [img]="setaDireitra" class="w-3"></i-lucide
+              ></span>
+            </div>
+          </div>
+          <div
+            class="reveal-esquerda shadow-xl/10 h-[180px] w-full bg-[url('/img/torradeira.svg')] bg-cover bg-center lg:bg-right bg-no-repeat rounded-xl xl:h-full lg:h-full"
+          >
+            <div class="flex flex-col p-[32px]">
+              <span class="text-[28px] xl:text-[34px] lg:text-[34px] font-bold">Cozinha</span>
+              <span
+                class="text-[12px] xl:text-[16px] underline underline-offset-1 flex items-center gap-1"
+                >Compre aqui
+                <i-lucide [img]="setaDireitra" class="w-3"></i-lucide
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal-esquerda pl-[32px] flex flex-col gap-7">
+      <span class="text-[34px] font-bold">
+        Novos produtos</span
+      >
+      <app-lista-produto></app-lista-produto>
+    </section>
+
+    <section class="px-[32px] grid grid-cols-2 gap-4 xl:grid-cols-4 lg:grid-cols-4 xl:px-0 lg:px-0 md:px-0">
+      <div
+        class="reveal-esquerda py-[32px] px-[20px] bg-[#F3F5F7] flex flex-col gap-[22px] rounded-xl shadow-xl/10"
+      >
+        <i-lucide [img]="carrinho" class="w-8 h-8"></i-lucide>
+
+        <div class="flex flex-col gap-[6px]">
+          <p class="font-semibold text-[14px]">Frete gratis</p>
+          <span class="text-[12px]">Compras acima de R$ 200</span>
+        </div>
+      </div>
+      <div
+        class="reveal-esquerda py-[32px] px-[20px] bg-[#F3F5F7] flex flex-col gap-[22px] rounded-xl shadow-xl/10"
+      >
+        <i-lucide [img]="dinheiro" class="w-8 h-8"></i-lucide>
+
+        <div class="flex flex-col gap-[6px]">
+          <p class="font-semibold text-[14px]">Garantia</p>
+          <span class="text-[12px]">30 dias de garantia</span>
+        </div>
+      </div>
+      <div
+        class="reveal-esquerda py-[32px] px-[20px] bg-[#F3F5F7] flex flex-col gap-[22px] rounded-xl shadow-xl/10"
+      >
+        <i-lucide [img]="cadeado" class="w-8 h-8"></i-lucide>
+
+        <div class="flex flex-col gap-[6px]">
+          <p class="font-semibold text-[14px]">Segurança</p>
+          <span class="text-[12px]">Seguro pela CAIXA</span>
+        </div>
+      </div>
+      <div
+        class="reveal-esquerda py-[32px] px-[20px] bg-[#F3F5F7] flex flex-col gap-[22px] rounded-xl shadow-xl/10"
+      >
+        <i-lucide [img]="telefone" class="w-8 h-8"></i-lucide>
+
+        <div class="flex flex-col gap-[6px]">
+          <p class="font-semibold text-[14px]">Suporte 24/7</p>
+          <span class="text-[12px]">Suporte por email ou telefone</span>
+        </div>
+      </div>
+    </section>
+
+    <section class=" reveal-esquerda xl:pb-16 lg:pb-16 md:pb-16">
+      <div
+        class="bg-[url('/img/banner-alt.svg')] bg-cover bg-center bg-no-repeat w-full h-[375px] xl:rounded-t-xl lg:rounded-t-xl md:rounded-t-xl"
+      ></div>
+      <div class="px-[32px] py-[60px] flex flex-col gap-[16px] bg-[#F3F5F7] xl:rounded-b-xl lg:rounded-b-xl md:rounded-b-xl">
+        <p class="text-[#377DFF] font-semibold">PROMOÇÃO ATÉ 35% OFF</p>
+
+        <p class="font-bold text-[34px]">Diversos novos preços reduzidos!</p>
+
+        <p>
+          Está mais acessível do que nunca renovar todos os ambientes da sua
+          casa com muito estilo.
+        </p>
+
+        <span
+          class="text-[12px] underline underline-offset-1 flex items-center gap-1"
+          >Compre aqui <i-lucide [img]="setaDireitra" class="w-3"></i-lucide
+        ></span>
+      </div>
+    </section>
+  </section>
+</div>

@@ -1,0 +1,131 @@
+{
+  "produtos": [
+    { 
+      "id": 1, 
+      "titulo": "Cesto de Roupa", 
+      "valor": 150, 
+      "descricao": "Cesto de roupa dobrável e resistente, ideal para organizar roupas sujas ou armazenar peças limpas de forma prática.", 
+      "estrelas": 4,
+      "desconto": 10,
+      "imagem": "/img/produto-cesto.svg"
+    },
+    { 
+      "id": 2, 
+      "titulo": "Luminária de Mesa", 
+      "valor": 220, 
+      "descricao": "Luminária de mesa com design moderno e regulagem de intensidade, perfeita para leitura e estudos.", 
+      "estrelas": 5,
+      "desconto": 15,
+      "imagem": "/img/produto-luminaria.svg"
+    },
+    { 
+      "id": 3, 
+      "titulo": "Lâmpada LED", 
+      "valor": 35, 
+      "descricao": "Lâmpada LED econômica e de longa duração, com luz branca natural que ilumina bem ambientes internos.", 
+      "estrelas": 4,
+      "desconto": 5,
+      "imagem": "/img/produto-lampada.svg"
+    },
+    { 
+      "id": 4, 
+      "titulo": "Torradeira Elétrica", 
+      "valor": 280, 
+      "descricao": "Torradeira elétrica com múltiplos níveis de aquecimento e bandeja removível para fácil limpeza.", 
+      "estrelas": 5,
+      "desconto": 20,
+      "imagem": "/img/produto-torradeira.svg"
+    },
+    { 
+      "id": 5, 
+      "titulo": "Poltrona Reclinável", 
+      "valor": 1800, 
+      "descricao": "Poltrona reclinável estofada, extremamente confortável, com apoio de pés e ideal para relaxar em casa.", 
+      "estrelas": 5,
+      "desconto": 25,
+      "imagem": "/img/produto-poltrona.svg"
+    }
+  ],
+  "reviews": [
+    { 
+      "id": 1, 
+      "produtoId": 1, 
+      "avaliacao": "O cesto de roupa tem um tamanho excelente e o material é bem resistente. Consigo organizar todas as roupas da família sem problemas, e mesmo quando está cheio ele continua firme. Além disso, o design é bonito e combina bem com o quarto de lavanderia.", 
+      "estrelas": 5, 
+      "nome": "Carlos Eduardo Silva Medeiro",
+      "imagem": "https://example.com/users/carlos.jpg"
+    },
+    { 
+      "id": 2, 
+      "produtoId": 1, 
+      "avaliacao": "Achei o cesto de roupa funcional, mas poderia ser um pouco maior, principalmente para roupas de cama. Fora isso, o tecido é de boa qualidade e a estrutura não deforma mesmo após alguns meses de uso.", 
+      "estrelas": 3, 
+      "nome": "Mariana Oliveira Santos Ribeiro",
+      "imagem": "https://example.com/users/mariana.jpg"
+    },
+    { 
+      "id": 3, 
+      "produtoId": 2, 
+      "avaliacao": "A luminária superou minhas expectativas. A intensidade da luz é ajustável, o que ajuda bastante quando quero estudar à noite sem cansar os olhos. O acabamento também é de ótima qualidade e dá um toque moderno à escrivaninha.", 
+      "estrelas": 5, 
+      "nome": "Pedro Henrique Lima Salgueiro Santos",
+      "imagem": "https://example.com/users/pedro.jpg"
+    },
+    { 
+      "id": 4, 
+      "produtoId": 2, 
+      "avaliacao": "Gostei muito da luminária, principalmente pelo design elegante e pela luz suave que não incomoda. É ideal para quem precisa de uma iluminação confortável para leitura e trabalho.", 
+      "estrelas": 4, 
+      "nome": "Fernanda Costa Rocha Lima Duarte",
+      "imagem": "https://example.com/users/fernanda.jpg"
+    },
+    { 
+      "id": 5, 
+      "produtoId": 3, 
+      "avaliacao": "Essa lâmpada LED é excelente! A iluminação é bem forte e clara, mas ao mesmo tempo aconchegante. Notei uma boa economia de energia na conta de luz depois que substituí todas as lâmpadas da casa.", 
+      "estrelas": 5, 
+      "nome": "João Vitor Almeida Louise",
+      "imagem": "https://example.com/users/joao.jpg"
+    },
+    { 
+      "id": 6, 
+      "produtoId": 3, 
+      "avaliacao": "A lâmpada funciona bem, mas eu esperava que a luz fosse um pouco mais intensa para ambientes maiores. Ainda assim, pelo preço, considero um ótimo custo-benefício.", 
+      "estrelas": 3, 
+      "nome": "Ana Paula Ferreira Souza",
+      "imagem": "https://example.com/users/ana.jpg"
+    },
+    { 
+      "id": 7, 
+      "produtoId": 4, 
+      "avaliacao": "A torradeira é excelente! Esquenta rápido e deixa o pão com uma textura crocante deliciosa. Além disso, é muito fácil de limpar por causa da bandeja removível, o que faz toda a diferença no dia a dia.", 
+      "estrelas": 5, 
+      "nome": "Lucas Martins Souza Ribeiro",
+      "imagem": "https://example.com/users/lucas.jpg"
+    },
+    { 
+      "id": 8, 
+      "produtoId": 4, 
+      "avaliacao": "Gostei bastante da torradeira, principalmente pela praticidade. O pão fica pronto em poucos minutos e a regulagem de aquecimento permite escolher exatamente o ponto desejado.", 
+      "estrelas": 4, 
+      "nome": "Beatriz Nunes Ribeiro Cardoso",
+      "imagem": "https://example.com/users/beatriz.jpg"
+    },
+    { 
+      "id": 9, 
+      "produtoId": 5, 
+      "avaliacao": "Essa poltrona é simplesmente maravilhosa! O estofado é extremamente macio, e o sistema de reclinação funciona perfeitamente. Passei a usar para ver TV e até para tirar cochilos, porque é muito confortável.", 
+      "estrelas": 5, 
+      "nome": "Felipe Augusto Cardoso Melo",
+      "imagem": "https://example.com/users/felipe.jpg"
+    },
+    { 
+      "id": 10, 
+      "produtoId": 5, 
+      "avaliacao": "A poltrona é de ótima qualidade, mas ocupa bastante espaço na sala. Fora isso, o conforto é inquestionável e a estrutura parece bem resistente para durar muitos anos.", 
+      "estrelas": 4, 
+      "nome": "Larissa Fernanda Melo Duarte",
+      "imagem": "https://example.com/users/larissa.jpg"
+    }
+  ]
+}

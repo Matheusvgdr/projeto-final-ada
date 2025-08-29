@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-6 pb-10">
+  <span class="text-[28px] font-bold">{{ reviews().length }} Reviews</span>
+  @for (item of reviews(); track $index) {
+  <app-review [review]="item"></app-review>
+  @if (!($index + 1 == reviews().length)) {
+  <div class="h-[2px] w-full bg-[#F3F5F7] rounded-full"></div>
+  } }
+</div>

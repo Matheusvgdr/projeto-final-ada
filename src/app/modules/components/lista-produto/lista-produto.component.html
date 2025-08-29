@@ -1,0 +1,5 @@
+<div class="flex items-center w-full gap-[16px] overflow-auto pr-[32px] pb-5">
+  @for (item of produtos(); track item.id) {
+  <app-produto [produto]="item"></app-produto>
+  }
+</div>
