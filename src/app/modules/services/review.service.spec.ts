@@ -44,6 +44,7 @@ describe('ReviewService', () => {
         avaliacao: 'Teste',
         nome: 'Matheus',
         estrelas: 5,
+        imagem: 'img.jpg'
       },
     ];
 

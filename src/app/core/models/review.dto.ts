@@ -4,4 +4,5 @@ export class ReviewDto{
     public avaliacao: string;
     public nome: string;
     public estrelas: number;
+    public imagem: string;
 }

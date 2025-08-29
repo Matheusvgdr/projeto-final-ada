@@ -25,7 +25,7 @@ export class ProdutoService {
       },
       {
         id: 2,
-        titulo: 'Luminária de Mesa',
+        titulo: 'Luminária',
         descricao:
           'Luminária de mesa com design moderno e regulagem de intensidade, perfeita para leitura e estudos.',
         estrelas: 5,
