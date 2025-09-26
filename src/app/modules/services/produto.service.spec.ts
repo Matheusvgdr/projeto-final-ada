@@ -5,7 +5,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { ProdutoService } from './produto.service';
-import { ProdutoDto } from '../../core/models/produto.dto';
+import { ProdutoResponse } from '../../core/models/response/produto.response';
 import { ENVIRONMENT } from '../../environment/environment';
 import { ControllersEnum } from '../../core/enums/controllers.enum';
 import {
@@ -36,7 +36,7 @@ describe('ProdutoService', () => {
   });
 
   it('deve buscar todos os produtos com sucesso', () => {
-    const mockProdutos: ProdutoDto[] = [
+    const mockProdutos: ProdutoResponse[] = [
       {
         id: 1,
         titulo: 'Produto Teste',
@@ -68,7 +68,7 @@ describe('ProdutoService', () => {
   });
 
   it('deve buscar produto por id com sucesso', () => {
-    const mockProduto: ProdutoDto = {
+    const mockProduto: ProdutoResponse = {
       id: 99,
       titulo: 'Mock Produto',
       descricao: 'Descricao',

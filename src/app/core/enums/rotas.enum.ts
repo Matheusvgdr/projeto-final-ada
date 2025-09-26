@@ -4,5 +4,6 @@ export enum RotasEnum{
     CARRINHO = 'carrinho',
     PAGAMENTO = 'pagamento',
     LOGIN = 'login',
-    CADASTRO = 'cadastro'
+    CADASTRO = 'cadastro',
+    ADMINISTRAR_PRODUTOS = 'administrar-produtos'
 }

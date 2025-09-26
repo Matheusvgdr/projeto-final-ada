@@ -1,4 +1,4 @@
 export enum ControllersEnum{
-    PRODUTOS = 'produtos',
+    PRODUTOS = 'products',
     REVIEWS = 'reviews'
 }

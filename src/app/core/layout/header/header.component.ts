@@ -6,6 +6,9 @@ import {
   MenuIcon,
   HandbagIcon,
   LogOut,
+  LogIn,
+  CircleUserRound,
+  UserRound,
 } from 'lucide-angular';
 import { ButtonModule } from 'primeng/button';
 import { DrawerModule } from 'primeng/drawer';
@@ -30,9 +33,14 @@ export class HeaderComponent {
   menu = MenuIcon;
   carrinho = HandbagIcon;
   visibilidade: boolean = false;
-  voltar = LogOut;
+  iconeSair = LogOut;
+  login = UserRound
+
   itensMenu = [{label: 'Home', rota: RotasEnum.HOME}, {label: 'Categorias', rota: '/'}, {label: 'Produtos', rota: '/'}];
   itensCarrinho$: Observable<number>;
+
+  rotaLogin = RotasEnum.LOGIN;
+  rotaCarrinho = RotasEnum.CARRINHO;
 
   private readonly router = inject(Router);
   constructor(private readonly store: Store<{ carrinho: { itens: any[] } }>, private readonly authService: AuthService) {
@@ -41,15 +49,15 @@ export class HeaderComponent {
     );
   }
 
-  navegar() {
-    this.router.navigate([RotasEnum.CARRINHO]);
+  navegar(rota: RotasEnum) {
+    this.router.navigate([rota]);
   }
 
-  get isLoggedIn(): boolean {
+  get verificarUsuarioLogado(): boolean {
     return this.authService.verificarAutenticacao();
   }
   
-  logoutCurrentUser() {
+  sair() {
     this.authService.realizarLogout();
   }
 }

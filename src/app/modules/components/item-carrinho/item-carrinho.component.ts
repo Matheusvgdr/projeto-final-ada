@@ -1,6 +1,6 @@
 import { Component, computed,  Input } from '@angular/core';
 import {  CurrencyPipe } from '@angular/common';
-import { ProdutoDto } from '../../../core/models/produto.dto';
+import { ProdutoResponse } from '../../../core/models/response/produto.response';
 import { LucideAngularModule, Star } from 'lucide-angular';
 
 @Component({
@@ -12,7 +12,7 @@ import { LucideAngularModule, Star } from 'lucide-angular';
 export class ItemCarrinhoComponent {
   estrela = Star;
   @Input()
-  produto: ProdutoDto = new ProdutoDto();
+  produto: ProdutoResponse = new ProdutoResponse();
 
   arrayEstrelas = computed(() => {
     const produto = this.produto;

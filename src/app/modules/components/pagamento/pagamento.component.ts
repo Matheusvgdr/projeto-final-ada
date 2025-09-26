@@ -15,13 +15,22 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-pagamento',
-  imports: [InputTextModule, FormsModule, FloatLabel, ReactiveFormsModule,CommonModule, LucideAngularModule,Toast, NgxMaskDirective],
-  providers:[provideNgxMask(), MessageService],
+  imports: [
+    InputTextModule,
+    FormsModule,
+    FloatLabel,
+    ReactiveFormsModule,
+    CommonModule,
+    LucideAngularModule,
+    Toast,
+    NgxMaskDirective,
+  ],
+  providers: [provideNgxMask(), MessageService],
   templateUrl: './pagamento.component.html',
   styleUrl: './pagamento.component.scss',
 })
 export class PagamentoComponent {
-  pagamento = Banknote
+  pagamento = Banknote;
   private readonly _formBuilder = inject(FormBuilder);
   liberacaoBotao: boolean = false;
 
@@ -34,7 +43,11 @@ export class PagamentoComponent {
 
   constructor(private readonly messageService: MessageService) {}
 
-    exibirToast() {
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Sucesso ao realizar pagamento' });
-    }
+  exibirToast() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Sucesso',
+      detail: 'Sucesso ao realizar pagamento',
+    });
+  }
 }

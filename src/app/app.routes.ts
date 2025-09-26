@@ -7,6 +7,7 @@ import { CarrinhoComponent } from './modules/components/carrinho/carrinho.compon
 import { PagamentoComponent } from './modules/components/pagamento/pagamento.component';
 import { LoginComponent } from './modules/pages/login/login.component';
 import { CadastroComponent } from './modules/pages/cadastro/cadastro.component';
+import { AdministrarProdutoComponent } from './modules/pages/administrar-produto/administrar-produto.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: RotasEnum.LOGIN,
     component: LoginComponent,
+  },
+  {
+    path: RotasEnum.ADMINISTRAR_PRODUTOS,
+    component: AdministrarProdutoComponent,
   },
   {
     path: `${RotasEnum.DETALHE_PRODUTO}/:id`,
