@@ -5,11 +5,21 @@ import { DetalheProdutoComponent } from './modules/pages/detalhe-produto/detalhe
 import { ItemCarrinhoComponent } from './modules/components/item-carrinho/item-carrinho.component';
 import { CarrinhoComponent } from './modules/components/carrinho/carrinho.component';
 import { PagamentoComponent } from './modules/components/pagamento/pagamento.component';
+import { LoginComponent } from './modules/pages/login/login.component';
+import { CadastroComponent } from './modules/pages/cadastro/cadastro.component';
 
 export const routes: Routes = [
   {
     path: RotasEnum.HOME,
     component: HomeComponent,
+  },
+  {
+    path: RotasEnum.CADASTRO,
+    component: CadastroComponent,
+  },
+  {
+    path: RotasEnum.LOGIN,
+    component: LoginComponent,
   },
   {
     path: `${RotasEnum.DETALHE_PRODUTO}/:id`,

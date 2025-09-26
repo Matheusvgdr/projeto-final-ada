@@ -2,5 +2,7 @@ export enum RotasEnum{
     HOME = '',
     DETALHE_PRODUTO = 'detalhe-produto',
     CARRINHO = 'carrinho',
-    PAGAMENTO = 'pagamento'
+    PAGAMENTO = 'pagamento',
+    LOGIN = 'login',
+    CADASTRO = 'cadastro'
 }
