@@ -12,6 +12,7 @@ import { DrawerModule } from 'primeng/drawer';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { RotasEnum } from '../../enums/rotas.enum';
+import { AuthService } from '../../../modules/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +35,7 @@ export class HeaderComponent {
   itensCarrinho$: Observable<number>;
 
   private readonly router = inject(Router);
-  constructor(private readonly store: Store<{ carrinho: { itens: any[] } }>) {
+  constructor(private readonly store: Store<{ carrinho: { itens: any[] } }>, private readonly authService: AuthService) {
     this.itensCarrinho$ = this.store.select(
       (state) => state.carrinho.itens.length || 0
     );
@@ -42,5 +43,13 @@ export class HeaderComponent {
 
   navegar() {
     this.router.navigate([RotasEnum.CARRINHO]);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.verificarAutenticacao();
+  }
+  
+  logoutCurrentUser() {
+    this.authService.realizarLogout();
   }
 }

@@ -7,10 +7,13 @@ import { MessageService } from 'primeng/api';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
+import { AuthService } from '../../services/auth.service';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
-  imports: [InputTextModule, FormsModule, FloatLabel, ReactiveFormsModule,CommonModule, LucideAngularModule,Toast, NgxMaskDirective],
+  imports: [InputTextModule, FormsModule, FloatLabel, ReactiveFormsModule, CommonModule, LucideAngularModule, Toast, NgxMaskDirective, RouterLink],
   providers:[provideNgxMask(), MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -25,13 +28,22 @@ export class LoginComponent {
     senha: ['', Validators.required],
   });
 
-  constructor(private readonly messageService: MessageService) {}
+  constructor(private readonly messageService: MessageService, private readonly authService: AuthService) {}
 
   exibirToast() {
     this.messageService.add({
       severity: 'success',
       summary: 'Sucesso',
       detail: 'Sucesso ao realizar pagamento',
+    });
+  }
+
+  realizarLogin(){
+    const valorForm = this.formLogin.value;
+    this.authService.realizarLogin(valorForm.email as string, valorForm.senha as string).subscribe({
+      next: (resultado) => {
+        this.exibirToast();
+      }
     });
   }
 }

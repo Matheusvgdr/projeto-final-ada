@@ -12,6 +12,9 @@ import { MessageService } from 'primeng/api';
 import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
+import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioRequest } from '../../../core/models/request/usuario.request';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,13 +27,14 @@ import { Toast } from 'primeng/toast';
     LucideAngularModule,
     Toast,
     NgxMaskDirective,
+    RouterLink,
   ],
   providers: [provideNgxMask(), MessageService],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss',
 })
 export class CadastroComponent {
-  pagamento = Banknote
+  pagamento = Banknote;
   private readonly _formBuilder = inject(FormBuilder);
   liberacaoBotao: boolean = false;
 
@@ -38,13 +42,34 @@ export class CadastroComponent {
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     senha: ['', Validators.required],
-    papel: ['ADMIN', Validators.required],
   });
 
-  constructor(private readonly messageService: MessageService) {}
+  constructor(
+    private readonly messageService: MessageService,
+    private readonly usuarioService: UsuarioService
+  ) {}
 
-    exibirToast() {
-        this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Sucesso ao realizar pagamento' });
-    }
+  exibirToast() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Sucesso',
+      detail: 'Sucesso ao realizar pagamento',
+    });
+  }
+
+  cadastrarUsuario() {
+    const valorForm = this.formCadastro.value;
+    let novoUsuario: UsuarioRequest = {
+      email: valorForm.email as string,
+      nome: valorForm.nome as string,
+      senha: valorForm.senha as string,
+    };
+    this.usuarioService.cadastrarUsuario(novoUsuario).subscribe({
+      next: (resultado) => {
+        console.log('teste');
+        
+        this.exibirToast();
+      },
+    });
+  }
 }
-

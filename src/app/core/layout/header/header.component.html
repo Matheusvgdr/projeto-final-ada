@@ -86,3 +86,14 @@
     </div>
   </nav>
 </p-drawer>
+
+
+  @if (isLoggedIn) {
+    <button (click)="logoutCurrentUser()">
+      Logout
+    </button>
+  } @else {
+    <button aria-label="Login user" routerLink="login">
+      Login
+    </button>
+  }

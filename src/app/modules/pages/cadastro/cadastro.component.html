@@ -6,7 +6,7 @@
     <div class="px-[32px] flex flex-col gap-8 xl:w-3/8 lg:w-3/7 xl:h-screen lg:h-screen xl:justify-center lg:justify-center md:w-2/3 sm:w-3/4">
         <div class="flex flex-col gap-1">
             <p class="text-[34px] xl:text-[40px] lg:text-[40px] font-bold">Cadastro</p>
-            <span class="text-[14px] xl:text-[18px] lg:text-[18px]">Já possui uma conta? <a href="" class="font-semibold text-emerald-500">Entre aqui</a></span>
+            <span class="text-[14px] xl:text-[18px] lg:text-[18px]">Já possui uma conta? <a routerLink="/login" class="font-semibold text-emerald-500">Entre aqui</a></span>
         </div>
 
         <form [formGroup]="formCadastro" class="flex flex-col gap-4" >
@@ -45,7 +45,7 @@
             <label class="!text-[12px] xl:!text-[14px] lg:!text-[14px]" for="on_label">Senha</label>
           </p-floatlabel>
           <button
-          (click)="exibirToast()"
+          (click)="cadastrarUsuario()"
             [disabled]="formCadastro.invalid"
             [ngClass]="{
               'bg-zinc-700 hover:bg-zinc-900': formCadastro.valid,
@@ -62,3 +62,4 @@
     </div>
   </section>
 </div>
+<p-toast />

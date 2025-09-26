@@ -7,13 +7,14 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { carrinhoReducer } from './modules/store/carrinho.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { LoaderInterceptor } from './modules/interceptors/loader.interceptor';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { AUTH_INTERCEPTOR } from './modules/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,7 +33,7 @@ export const appConfig: ApplicationConfig = {
       trace: false,
       traceLimit: 75,
     }),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([AUTH_INTERCEPTOR])),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
