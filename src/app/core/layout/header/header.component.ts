@@ -73,7 +73,6 @@ export class HeaderComponent {
     
     
   ];
-  console.log(this.itensMenu)
   }
 
   navegar(rota: RotasEnum | RotasEnum[]) {

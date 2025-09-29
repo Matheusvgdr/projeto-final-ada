@@ -51,14 +51,6 @@ export class CadastroComponent {
     private readonly router: Router
   ) {}
 
-  exibirToast() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Sucesso',
-      detail: 'Sucesso ao realizar pagamento',
-    });
-  }
-
   cadastrarUsuario() {
     const valorForm = this.formCadastro.value;
     let novoUsuario: UsuarioRequest = {
@@ -68,9 +60,19 @@ export class CadastroComponent {
     };
     this.usuarioService.cadastrarUsuario(novoUsuario).subscribe({
       next: (resultado) => {
-        
-        this.exibirToast();
-        this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN])
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Cadastro realizado com sucesso',
+        });
+        this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN]);
+      },
+      error: (erro) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao realizar cadastro.',
+        });
       },
     });
   }

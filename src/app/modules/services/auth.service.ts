@@ -47,7 +47,6 @@ export class AuthService {
 
     const now = Math.floor(Date.now() / 1000);
     const tempoAteExpiracao = Math.max((payload.exp - now), 0);
-    console.log(tempoAteExpiracao);
 
     this.expTimer = setTimeout(() => this.realizarLogout(), tempoAteExpiracao * 1000);
   }

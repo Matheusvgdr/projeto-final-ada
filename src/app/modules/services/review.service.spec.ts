@@ -57,7 +57,7 @@ describe('ReviewService', () => {
       `${ENVIRONMENT.URL_BASE}/${ControllersEnum.REVIEWS}?produtoId=1`
     );
     expect(req.request.method).toBe('GET');
-    req.flush(mockResponse); // responde a requisição fake
+    req.flush(mockResponse); 
   });
 
   it('deve retornar lista fixa em caso de erro', () => {

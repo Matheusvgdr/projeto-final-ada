@@ -68,6 +68,12 @@ export class DetalheProdutoComponent {
   produtoParaEditar: ProdutoResponse;
   usuarioAdmin: boolean = false;
 
+  imagemPreview = signal<string | null>(null);
+
+  private readonly _formBuilder = inject(FormBuilder);
+
+  liberacaoBotao: boolean = false;
+
   private readonly route = inject(ActivatedRoute);
   private readonly produtoService = inject(ProdutoService);
   private readonly store = inject(Store);
@@ -80,8 +86,6 @@ export class DetalheProdutoComponent {
     this.usuarioAdmin = this.authService.verificarUsuarioAdmin();
   }
 
-  imagemPreview = signal<string | null>(null);
-
   ngOnInit() {
     this.formEdicao
       .get('imagem')
@@ -90,7 +94,7 @@ export class DetalheProdutoComponent {
       });
   }
 
-  public produto = toSignal(
+  produto = toSignal(
     this.route.params.pipe(
       map((params) => params['id']),
       switchMap((id) =>
@@ -127,10 +131,6 @@ export class DetalheProdutoComponent {
   navegarParaLogin() {
     this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN]);
   }
-
-  private readonly _formBuilder = inject(FormBuilder);
-
-  liberacaoBotao: boolean = false;
 
   formEdicao = this._formBuilder.group({
     titulo: ['', Validators.required],
@@ -170,22 +170,25 @@ export class DetalheProdutoComponent {
 
     this.produtoService.editarProduto(produtoDto, this.produto().id).subscribe({
       next: (resultado) => {
-        this.router.navigate([RotasEnum.ADMINISTRAR_PRODUTOS])
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Edição realizada com sucesso',
+        });
+        this.router.navigate([RotasEnum.ADMINISTRAR_PRODUTOS]);
         this.fecharModal();
       },
-      error: (error) => {},
+      error: (erro) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao realizar edição.',
+        });
+      },
     });
   }
 
   fecharModal() {
     this.visible = false;
-  }
-
-  exibirToast() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Sucesso',
-      detail: 'Sucesso ao realizar pagamento',
-    });
   }
 }

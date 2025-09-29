@@ -12,13 +12,13 @@ import {
 } from 'lucide-angular';
 import { ProdutoService } from '../../services/produto.service';
 import { Dialog } from 'primeng/dialog';
-import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from '../../services/auth.service';
-import { RolesEnum } from '../../../core/enums/roles.enum';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-produto',
   imports: [RouterModule, CurrencyPipe, LucideAngularModule, Dialog],
+  providers:[MessageService],
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.scss',
 })
@@ -36,9 +36,10 @@ export class ProdutoComponent {
   private readonly router = inject(Router);
   private readonly produtoService = inject(ProdutoService);
   private readonly authService = inject(AuthService);
+  private readonly messageService = inject(MessageService);
+
   constructor() {
     this.usuarioAdmin = this.authService.verificarUsuarioAdmin();
-    console.log(this.usuarioAdmin);
   }
 
   navegar(produtoId: number) {
@@ -51,10 +52,20 @@ export class ProdutoComponent {
 
   confirmarDelecao() {
     this.produtoService.deletarProduto(this.produto.id).subscribe({
-      next: () => {
+      next: (resultado) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Deleção realizada com sucesso',
+        });
         this.fecharModal();
       },
-      error: () => {
+      error: (erro) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao realizar deleção.',
+        });
         this.fecharModal();
       },
     });

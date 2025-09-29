@@ -57,13 +57,6 @@ export class AdministrarProdutoComponent {
     desconto: [null],
   });
 
-  ngOnInit() {
-    this.verificarPermissao();
-  }
-  verificarPermissao() {
-    console.log('aaaa', this.authService.capturarPayloadToken());
-  }
-
   abrirModalCadastroProduto() {
     this.visibilidade = true;
   }

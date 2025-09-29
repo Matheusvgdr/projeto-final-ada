@@ -51,7 +51,6 @@ export class ProdutoService {
       desconto: 15,
     },
   ];
-  // Signal que guarda os produtos
   produtos = signal<ProdutoResponse[]>([]);
 
   buscarProdutos() {

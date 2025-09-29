@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   isDevMode,
+  LOCALE_ID,
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -21,6 +22,10 @@ import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { AUTH_INTERCEPTOR } from './modules/interceptors/auth.interceptor';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -59,7 +64,8 @@ export const appConfig: ApplicationConfig = {
         suffix: '.json',
       }),
       lang: 'pt-br',
-      fallbackLang: 'pt-br'
+      fallbackLang: 'pt-br',
     }),
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };

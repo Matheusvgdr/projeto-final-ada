@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { LucideAngularModule, Banknote } from 'lucide-angular';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MessageService } from 'primeng/api';
@@ -11,13 +16,22 @@ import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { RotasEnum } from '../../../core/enums/rotas.enum';
 
-
 @Component({
   selector: 'app-login',
-  imports: [InputTextModule, FormsModule, FloatLabel, ReactiveFormsModule, CommonModule, LucideAngularModule, Toast, NgxMaskDirective, RouterLink],
-  providers:[provideNgxMask(), MessageService],
+  imports: [
+    InputTextModule,
+    FormsModule,
+    FloatLabel,
+    ReactiveFormsModule,
+    CommonModule,
+    LucideAngularModule,
+    Toast,
+    NgxMaskDirective,
+    RouterLink,
+  ],
+  providers: [provideNgxMask(), MessageService],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   pagamento = Banknote;
@@ -29,23 +43,32 @@ export class LoginComponent {
     senha: ['', Validators.required],
   });
 
-  constructor(private readonly messageService: MessageService, private readonly authService: AuthService, private readonly router: Router) {}
+  constructor(
+    private readonly messageService: MessageService,
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
-  exibirToast() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Sucesso',
-      detail: 'Sucesso ao realizar pagamento',
-    });
-  }
-
-  realizarLogin(){
+  realizarLogin() {
     const valorForm = this.formLogin.value;
-    this.authService.realizarLogin(valorForm.email as string, valorForm.senha as string).subscribe({
-      next: (resultado) => {
-        this.exibirToast();
-        this.router.navigate([RotasEnum.HOME])
-      }
-    });
+    this.authService
+      .realizarLogin(valorForm.email as string, valorForm.senha as string)
+      .subscribe({
+        next: (resultado) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: 'Login realizado com sucesso',
+          });
+          this.router.navigate([RotasEnum.HOME]);
+        },
+        error: (erro) => {
+           this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Erro ao realizar acesso.',
+          });
+        },
+      });
   }
 }

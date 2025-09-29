@@ -17,26 +17,23 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      {
-        path: RotasEnum.HOME,
-        component: HomeComponent,
-      },
+      { path: RotasEnum.HOME, component: HomeComponent },
       {
         path: RotasEnum.ADMINISTRAR_PRODUTOS,
         component: AdministrarProdutoComponent,
         canActivate: [authGuard],
+        data: { precisaSerAdmin: true }
       },
       {
         path: `${RotasEnum.DETALHE_PRODUTO}/:id`,
         component: DetalheProdutoComponent,
       },
-      {
-        path: RotasEnum.CARRINHO,
-        component: CarrinhoComponent,
-      },
+      { path: RotasEnum.CARRINHO, component: CarrinhoComponent },
       {
         path: RotasEnum.PAGAMENTO,
         component: PagamentoComponent,
+        canActivate: [authGuard],
+        data: { precisaSerAdmin: false }
       },
     ],
   },
@@ -49,3 +46,4 @@ export const routes: Routes = [
     ],
   },
 ];
+

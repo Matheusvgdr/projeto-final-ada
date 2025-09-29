@@ -18,7 +18,6 @@ export const AUTH_INTERCEPTOR: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError((err: HttpErrorResponse) => {
       if (err.status === 401) {
-        // token pode ter expirado entre a checagem e a requisição
         authService.realizarLogout();
       }
       return throwError(() => err);

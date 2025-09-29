@@ -9,3 +9,5 @@ export const removerProdutoCarrinho = createAction(
   '[Carrinho] Remover produto do carrinho',
   props<{ produtoId: string }>()
 );
+
+export const limparCarrinho = createAction('[Carrinho] Limpar carrinho');

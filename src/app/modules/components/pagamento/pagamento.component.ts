@@ -12,6 +12,9 @@ import { Banknote, LucideAngularModule } from 'lucide-angular';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { StorageEnum } from '../../../core/enums/storage.enum';
+import { Store } from '@ngrx/store';
+import { limparCarrinho } from '../../store/carrinho.actions';
 
 @Component({
   selector: 'app-pagamento',
@@ -32,6 +35,7 @@ import { MessageService } from 'primeng/api';
 export class PagamentoComponent {
   pagamento = Banknote;
   private readonly _formBuilder = inject(FormBuilder);
+  private store = inject(Store);
   liberacaoBotao: boolean = false;
 
   formDadosPagamento = this._formBuilder.group({
@@ -49,5 +53,7 @@ export class PagamentoComponent {
       summary: 'Sucesso',
       detail: 'Sucesso ao realizar pagamento',
     });
+
+    this.store.dispatch(limparCarrinho());
   }
 }

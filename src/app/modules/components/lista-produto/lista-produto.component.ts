@@ -15,7 +15,6 @@ export class ListaProdutoComponent {
   produtos = this.produtoService.produtos;
 
   constructor() {
-    // Carrega a lista inicial
     this.produtoService.buscarProdutos();
   }
 }
