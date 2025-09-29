@@ -7,7 +7,11 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { carrinhoReducer } from './modules/store/carrinho.reducer';
@@ -15,6 +19,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { LoaderInterceptor } from './modules/interceptors/loader.interceptor';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { AUTH_INTERCEPTOR } from './modules/interceptors/auth.interceptor';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -46,6 +52,14 @@ export const appConfig: ApplicationConfig = {
         },
         preset: Aura,
       },
+    }),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+      lang: 'pt-br',
+      fallbackLang: 'pt-br'
     }),
   ],
 };

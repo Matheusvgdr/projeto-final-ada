@@ -1,3 +1,4 @@
 export enum StorageEnum{
-    USUARIO_LOGADO = 'usuarioLogado'
+    USUARIO_LOGADO = 'usuarioLogado',
+    IDIOMA_SELECIONADO = 'idiomaSelecionado'
 }

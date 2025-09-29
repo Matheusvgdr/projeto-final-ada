@@ -27,17 +27,20 @@
         <div class="flex gap-3">
           <button
             (click)="adicionarProdutoCarrinho()"
-            class="py-[12px] flex items-center justify-center gap-3 hover:-translate-y-1 duration-500 cursor-pointer w-[90%] bg-indigo-500 border-none rounded-[8px] text-white font-bold text-[14px]"
+            class="py-[12px] w-full flex items-center justify-center gap-3 hover:-translate-y-1 duration-500 cursor-pointer w-[90%] bg-indigo-500 border-none rounded-[8px] text-white font-bold text-[14px]"
           >
             Adicionar ao carrinho
             <lucide-angular [img]="adicionar"></lucide-angular>
           </button>
+          @if (usuarioAdmin) {
           <button
             (click)="showDialog(produto())"
-            class="py-[12px] flex items-center justify-center gap-3 hover:-translate-y-1 duration-500 cursor-pointer w-[10%] bg-rose-500 border-none rounded-[8px] text-white font-bold text-[14px]"
+            class="py-[12px] px-[25px] flex items-center justify-center gap-3 hover:-translate-y-1 duration-500 cursor-pointer w-[10%] bg-indigo-500 border-none rounded-[8px] text-white font-bold text-[14px]"
           >
-            <lucide-angular [img]="remover"></lucide-angular>
+            <lucide-angular [img]="iconeEditar"></lucide-angular>
           </button>
+
+          }
         </div>
       </div>
     </div>
@@ -46,101 +49,125 @@
   </section>
 </div>
 
-<div class="card flex justify-center">
-  <p-dialog
-    header="Editar produto"
-    [modal]="true"
-    [draggable]="false"
-    [(visible)]="visible"
-    [style]="{ width: '23rem' }"
+<p-dialog
+  header="Acesso necessário"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="visibilidadeModalAcesso"
+  [style]="{ width: '23rem' }"
+>
+  <span class="block mb-8"
+    >Atenção, para adicionar um item ao carrinho é necessário estar logado, gostaria de ser redirecionado para a tela de login?</span
   >
-    <form [formGroup]="formEdicao" class="grid grid-cols-9 gap-6 py-3">
-      <p-floatlabel variant="on" class="col-start-1 col-end-10">
-        <input
-          class="!text-[12px]"
-          [fluid]="true"
-          pInputText
-          formControlName="titulo"
-          id="titulo"
-          autocomplete="off"
-        />
-        <label class="!text-[12px]" for="on_label">Título</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on" class="col-start-1 col-end-4">
-        <input
-          class="!text-[12px]"
-          [fluid]="true"
-          pInputText
-          formControlName="quantidadeEstoque"
-          id="quantidadeEstoque"
-          autocomplete="off"
-        />
-        <label class="!text-[12px]" for="on_label">Estoque</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on" class="col-start-4 col-end-7">
-        <input
-          class="!text-[12px]"
-          [fluid]="true"
-          pInputText
-          formControlName="desconto"
-          id="desconto"
-          autocomplete="off"
-        />
-        <label class="!text-[12px]" for="on_label">Desconto</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on" class="col-start-7 col-end-10">
-        <input
-          class="!text-[12px]"
-          [fluid]="true"
-          pInputText
-          formControlName="valor"
-          id="valor"
-          autocomplete="off"
-        />
-        <label class="!text-[12px]" for="on_label">Valor</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on" class="col-start-1 col-end-10">
-        <input
-          class="!text-[12px]"
-          [fluid]="true"
-          pInputText
-          formControlName="imagem"
-          id="imagem"
-          autocomplete="off"
-        />
-        <label class="!text-[12px]" for="on_label">Imagem</label>
-      </p-floatlabel>
+  <div class="flex gap-3 w-full">
+    <button
+      (click)="fecharModalAcesso()"
+      class="py-[12px] bg-zinc-800 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+    >
+      Não
+    </button>
+    <button
+      (click)="navegarParaLogin()"
+      class="py-[12px] bg-indigo-500 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+    >
+      Sim
+    </button>
+  </div>
+</p-dialog>
 
-      <p-floatlabel variant="on" class="col-start-1 col-end-10">
-        <textarea
-          pTextarea
-          id="descricao"
-          formControlName="descricao"
-          rows="5"
-          cols="30"
-          style="resize: none"
-          class="h-full w-full !text-[12px]"
-        ></textarea>
-        <label class="!text-[12px]" for="on_label">Descrição</label>
-      </p-floatlabel>
+<p-dialog
+  header="Editar produto"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="visible"
+  [style]="{ width: '23rem' }"
+>
+  <form [formGroup]="formEdicao" class="grid grid-cols-9 gap-6 py-3">
+    <p-floatlabel variant="on" class="col-start-1 col-end-10">
+      <input
+        class="!text-[12px]"
+        [fluid]="true"
+        pInputText
+        formControlName="titulo"
+        id="titulo"
+        autocomplete="off"
+      />
+      <label class="!text-[12px]" for="on_label">Título</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="col-start-1 col-end-4">
+      <input
+        class="!text-[12px]"
+        [fluid]="true"
+        pInputText
+        formControlName="quantidadeEstoque"
+        id="quantidadeEstoque"
+        autocomplete="off"
+      />
+      <label class="!text-[12px]" for="on_label">Estoque</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="col-start-4 col-end-7">
+      <input
+        class="!text-[12px]"
+        [fluid]="true"
+        pInputText
+        formControlName="desconto"
+        id="desconto"
+        autocomplete="off"
+      />
+      <label class="!text-[12px]" for="on_label">Desconto</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="col-start-7 col-end-10">
+      <input
+        class="!text-[12px]"
+        [fluid]="true"
+        pInputText
+        formControlName="valor"
+        id="valor"
+        autocomplete="off"
+      />
+      <label class="!text-[12px]" for="on_label">Valor</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="col-start-1 col-end-10">
+      <input
+        class="!text-[12px]"
+        [fluid]="true"
+        pInputText
+        formControlName="imagem"
+        id="imagem"
+        autocomplete="off"
+      />
+      <label class="!text-[12px]" for="on_label">Imagem</label>
+    </p-floatlabel>
 
-      <div class="flex gap-3 col-start-1 col-end-10">
-        <button
-          (click)="fecharModal()"
-          [disabled]="formEdicao.invalid"
-          class="py-[12px] bg-zinc-800 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
-        >
-          Cancelar
-        </button>
-        <button
-          (click)="editarProduto()"
-          [disabled]="formEdicao.invalid"
-          class="py-[12px] bg-emerald-500 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
-        >
-          Editar
-          <lucide-angular [img]="iconeEditar"></lucide-angular>
-        </button>
-      </div>
-    </form>
-  </p-dialog>
-</div>
+    <p-floatlabel variant="on" class="col-start-1 col-end-10">
+      <textarea
+        pTextarea
+        id="descricao"
+        formControlName="descricao"
+        rows="5"
+        cols="30"
+        style="resize: none"
+        class="h-full w-full !text-[12px]"
+      ></textarea>
+      <label class="!text-[12px]" for="on_label">Descrição</label>
+    </p-floatlabel>
+
+    <div class="flex gap-3 col-start-1 col-end-10">
+      <button
+        (click)="fecharModal()"
+        [disabled]="formEdicao.invalid"
+        class="py-[12px] bg-zinc-800 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="editarProduto()"
+        [disabled]="formEdicao.invalid"
+        class="py-[12px] bg-emerald-500 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+      >
+        Editar
+        <lucide-angular [img]="iconeEditar"></lucide-angular>
+      </button>
+    </div>
+  </form>
+</p-dialog>

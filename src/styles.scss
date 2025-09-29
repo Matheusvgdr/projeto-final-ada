@@ -74,3 +74,17 @@
 .p-toast-message-text{
   gap: 2px !important;
 }
+
+.p-select-label{
+  overflow: visible !important;
+}
+
+.p-iconwrapper{
+  display: none !important;
+}
+
+.p-select{
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+}

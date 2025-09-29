@@ -8,7 +8,7 @@ import {
   Trash2,
 } from 'lucide-angular';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { map, switchMap } from 'rxjs/operators';
 import { ProdutoService } from '../../services/produto.service';
@@ -32,6 +32,8 @@ import { MessageService } from 'primeng/api';
 import { TextareaModule } from 'primeng/textarea';
 import { ProdutoResponse } from '../../../core/models/response/produto.response';
 import { ProdutoRequest } from '../../../core/models/request/produto.request';
+import { AuthService } from '../../services/auth.service';
+import { RotasEnum } from '../../../core/enums/rotas.enum';
 
 @Component({
   selector: 'app-detalhe-produto',
@@ -58,18 +60,22 @@ import { ProdutoRequest } from '../../../core/models/request/produto.request';
 export class DetalheProdutoComponent {
   estrela = Star;
   adicionar = CirclePlus;
-  remover = Trash2;
   iconeEditar = Pencil;
 
   visible: boolean = false;
+  visibilidadeModalAcesso = false;
 
   produtoParaEditar: ProdutoResponse;
+  usuarioAdmin: boolean = false;
 
   private readonly route = inject(ActivatedRoute);
   private readonly produtoService = inject(ProdutoService);
   private readonly store = inject(Store);
 
-  constructor(private readonly messageService: MessageService) {}
+  constructor(private readonly messageService: MessageService, private readonly authService: AuthService, private readonly router: Router) {
+    this.usuarioAdmin = this.authService.verificarUsuarioAdmin();
+    
+  }
 
   public produto = toSignal(
     this.route.params.pipe(
@@ -87,9 +93,24 @@ export class DetalheProdutoComponent {
   });
 
   adicionarProdutoCarrinho() {
-    this.store.dispatch(
-      CarrinhoActions.adicionarProdutoCarrinho({ produto: this.produto() })
-    );
+    if(this.authService.verificarAutenticacao()){
+      this.store.dispatch( CarrinhoActions.adicionarProdutoCarrinho({ produto: this.produto() }));
+    }else{
+      this.abrirModalAcesso();
+    }
+    
+  }
+
+  abrirModalAcesso(){
+    this.visibilidadeModalAcesso = true;
+  }
+
+  fecharModalAcesso(){
+    this.visibilidadeModalAcesso = false;
+  }
+
+  navegarParaLogin(){
+    this.router.navigate([RotasEnum.LOGIN])
   }
 
   private readonly _formBuilder = inject(FormBuilder);

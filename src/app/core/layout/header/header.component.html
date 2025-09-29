@@ -24,21 +24,46 @@
     >
       @for (item of itensMenu; track $index) {
       <li>
+        @if (item?.visibilidadeItemMenu) {
         <a [routerLink]="item.rota" class="cursor-pointer">{{ item.label }}</a>
+        }
       </li>
       }
     </ul>
 
-    <button (click)="navegar(rotaCarrinho)" class="flex items-center gap-1 cursor-pointer">
-      <lucide-angular [img]="carrinho"></lucide-angular>
-      @if ((itensCarrinho$ | async) != 0) {
-      <div
-        class="w-6 h-6 animate-bounce rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-semibold text-white"
-      >
-        {{ itensCarrinho$ | async }}
+    <div class="flex gap-2">
+      <div class="card flex justify-center">
+        <p-select
+          [options]="idiomas"
+          [(ngModel)]="idiomaAtual"
+          (onChange)="mudarIdioma($event.value)"
+          optionValue="value"
+          [style]="{ width: '3rem' }"
+          panelStyleClass="custom-dropdown-panel"
+        >
+          <ng-template pTemplate="selectedItem">
+            <lucide-angular [img]="iconeIdioma"></lucide-angular>
+          </ng-template>
+
+          <ng-template let-option pTemplate="item">
+            <span>{{ option.label }}</span>
+          </ng-template>
+        </p-select>
       </div>
-      }
-    </button>
+      <button
+        (click)="navegar(rotaCarrinho)"
+        class="flex items-center gap-1 cursor-pointer"
+      >
+        <lucide-angular [img]="carrinho"></lucide-angular>
+        @if ((itensCarrinho$ | async) != 0) {
+        <div
+          class="w-6 h-6 animate-bounce rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-semibold text-white"
+        >
+          {{ itensCarrinho$ | async }}
+        </div>
+        }
+      </button>
+    </div>
   </header>
 </div>
 <p-drawer [(visible)]="visibilidade" header="3legant">
@@ -60,7 +85,7 @@
 
     <div class="flex flex-col gap-6">
       <div class="flex justify-between">
-        <p class="font-semibold text-[18px]">Carrinho</p>
+        <p class="font-semibold text-[18px]">{{ "header.cart" | translate }}</p>
         <button
           (click)="visibilidade = false; navegar(rotaCarrinho)"
           class="flex items-center gap-1 cursor-pointer"
@@ -87,7 +112,7 @@
       </button>
       } @else {
       <button
-        (click)="visibilidade = false; navegar(rotaLogin) "
+        (click)="visibilidade = false; navegar(rotaLogin)"
         class="py-[12px] cursor-pointer w-full bg-blue-500 border-none rounded-[8px] text-white font-bold text-[14px] flex items-center gap-3 justify-center"
       >
         Login

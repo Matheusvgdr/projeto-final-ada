@@ -1,4 +1,6 @@
-<div class="flex items-center w-full gap-[16px] px-3 pt-3 pb-6  rounded-[24px] border border-solid border-gray-200">
+<div
+  class="flex items-center w-full gap-[16px] px-3 pt-3 pb-6 rounded-[24px] border border-solid border-gray-200"
+>
   <div class="flex flex-col w-full gap-[8px]">
     <div
       class="p-[16px] h-[308px] w-full bg-cover bg-center bg-no-repeat rounded-xl flex flex-col justify-between"
@@ -12,51 +14,59 @@
             <span class="font-bold">NOVO</span>
           </div>
           <div class="py-[4px] px-3 rounded-[6px] bg-emerald-500 w-fit">
-            <span class="font-bold text-white"> - {{produto.desconto}}%</span>
+            <span class="font-bold text-white"> - {{ produto.desconto }}%</span>
           </div>
         </div>
-        <button (click)="abrirModalConfirmacao()" class="h-4 w-4 cursor-pointer p-3 rounded-full border border-solid border-gray-300 bg-white flex items-center justify-center">
+        @if(usuarioAdmin){
+        <button
+          (click)="abrirModalConfirmacao()"
+          class="h-4 w-4 cursor-pointer p-3 rounded-full border border-solid border-gray-300 bg-white flex items-center justify-center"
+        >
           <lucide-angular [img]="iconeRemover" class="w-3.5"></lucide-angular>
         </button>
+        }
       </div>
       <button
         (click)="navegar(produto.id)"
-        class="py-[12px] w-full bg-zinc-800 flex items-center justify-center gap-3  border-none rounded-[8px] cursor-pointer hover:-translate-y-1 duration-500 text-white font-bold text-[14px]"
+        class="py-[12px] w-full bg-zinc-800 flex items-center justify-center gap-3 border-none rounded-[8px] cursor-pointer hover:-translate-y-1 duration-500 text-white font-bold text-[14px]"
       >
         Visualizar
-            <lucide-angular [img]="visualizacao"></lucide-angular>
+        <lucide-angular [img]="visualizacao"></lucide-angular>
       </button>
     </div>
     <div class="flex flex-col gap-[4px]">
       <span class="font-semibold">{{ produto.titulo }}</span>
-      <span class="text-[12px] font-medium">{{ produto.valor  |currency:'BRL' }}</span>
+      <span class="text-[12px] font-medium">{{
+        produto.valor | currency : "BRL"
+      }}</span>
     </div>
   </div>
 </div>
 
-<div class="card flex justify-center">
-  <p-dialog
-    header="Deletar produto"
-    [modal]="true"
-    [draggable]="false"
-    [(visible)]="visibilidade"
-    [style]="{ width: '23rem' }"
+<p-dialog
+  header="Deletar produto"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="visibilidade"
+  [style]="{ width: '23rem' }"
+>
+  <span class="block mb-8"
+    >Ao confirmar, você irá deletar esse produto permanentemente. Gostaria de
+    prosseguir?</span
   >
-      <span class="block mb-8">Ao confirmar, você irá deletar esse produto permanentemente. Gostaria de prosseguir?</span>
-      <div class="flex gap-3 w-full">
-        <button
-          (click)="fecharModal()"
-          class="py-[12px] bg-zinc-800 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
-        >
-          Cancelar
-        </button>
-        <button
-          (click)="confirmarDelecao()"
-          class="py-[12px] bg-rose-500 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
-        >
-          Deletar
-          <lucide-angular [img]="iconeDeletar"></lucide-angular>
-        </button>
-      </div>
-  </p-dialog>
-</div>
+  <div class="flex gap-3 w-full">
+    <button
+      (click)="fecharModal()"
+      class="py-[12px] bg-zinc-800 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+    >
+      Cancelar
+    </button>
+    <button
+      (click)="confirmarDelecao()"
+      class="py-[12px] bg-rose-500 flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+    >
+      Deletar
+      <lucide-angular [img]="iconeDeletar"></lucide-angular>
+    </button>
+  </div>
+</p-dialog>

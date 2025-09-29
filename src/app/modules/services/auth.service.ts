@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { StorageEnum } from '../../core/enums/storage.enum';
 import { ENVIRONMENT } from '../../environment/environment';
 import { LoginDto } from '../../core/models/login.dto';
+import { RolesEnum } from '../../core/enums/roles.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthService {
     return token;
   }
 
-  capturarPayloadToken() {
+  capturarPayloadToken(): any {
     const { token } = JSON.parse(localStorage.getItem(StorageEnum.USUARIO_LOGADO) || '{}');
     if (!token) return null;
 
@@ -49,6 +50,10 @@ export class AuthService {
     console.log(tempoAteExpiracao);
 
     this.expTimer = setTimeout(() => this.realizarLogout(), tempoAteExpiracao * 1000);
+  }
+
+  verificarUsuarioAdmin(): boolean{
+    return this.capturarPayloadToken()?.papel == RolesEnum.ADMIN;
   }
 
   verificarExpiracaoLogin() {

@@ -8,6 +8,7 @@ import { PagamentoComponent } from './modules/components/pagamento/pagamento.com
 import { LoginComponent } from './modules/pages/login/login.component';
 import { CadastroComponent } from './modules/pages/cadastro/cadastro.component';
 import { AdministrarProdutoComponent } from './modules/pages/administrar-produto/administrar-produto.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path: RotasEnum.ADMINISTRAR_PRODUTOS,
     component: AdministrarProdutoComponent,
+    canActivate: [authGuard],
+    
+
+    
   },
   {
     path: `${RotasEnum.DETALHE_PRODUTO}/:id`,

@@ -1,0 +1,67 @@
+{
+  "home": {
+    "banner": {
+      "title": "Cozy /",
+      "subtitle": "<strong>3legant</strong> is a gift and decoration store based in São Paulo and Rio since 2025."
+    },
+    "sections": {
+      "livingRoom": {
+        "title": "Living Room",
+        "cta": "Shop now"
+      },
+      "bedroom": {
+        "title": "Bedroom",
+        "cta": "Shop now"
+      },
+      "kitchen": {
+        "title": "Kitchen",
+        "cta": "Shop now"
+      }
+    },
+    "products": {
+      "title": "Our Products",
+      "loading": "Loading products...",
+      "error": "Error loading content."
+    },
+    "benefits": {
+      "shipping": {
+        "title": "Free Shipping",
+        "desc": "Orders over R$ 200"
+      },
+      "warranty": {
+        "title": "Warranty",
+        "desc": "30-day warranty"
+      },
+      "security": {
+        "title": "Security",
+        "desc": "Insured by CAIXA"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "desc": "Support by email or phone"
+      }
+    },
+    "promotion": {
+      "highlight": "SALE UP TO 35% OFF",
+      "title": "Several new reduced prices!",
+      "desc": "It’s more affordable than ever to renew every room in your home with great style.",
+      "cta": "Shop now"
+    }
+  },
+
+  "header": {
+    "brand": "3legant",
+    "menu": {
+      "home": "Home",
+      "categories": "Categories",
+      "products": "Products"
+    },
+    "cart": "Cart",
+    "login": "Login",
+    "logout": "Logout",
+    "languages": {
+      "portuguese": "Portuguese",
+      "english": "English"
+    }
+  }
+}

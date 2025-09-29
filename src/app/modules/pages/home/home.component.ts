@@ -11,10 +11,11 @@ import {
 
 import ScrollReveal from 'scrollreveal';
 import { ListaProdutoComponent } from '../../components/lista-produto/lista-produto.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [LucideAngularModule, ListaProdutoComponent],
+  imports: [LucideAngularModule, ListaProdutoComponent, TranslateModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -31,10 +32,9 @@ export class HomeComponent  {
       origin: 'left',
       distance: '20px',
       duration: 1000,
-      reset: false, // Set to true if you want animations to reset on scroll up
+      reset: false,
     });
 
-    // Apply reveal to elements with a specific class
     sr.reveal('.reveal-esquerda');
   }
 }

@@ -1,0 +1,67 @@
+{
+  "home": {
+    "banner": {
+      "title": "Aconchegante /",
+      "subtitle": "<strong>3legant</strong> é uma loja de presentes e decorações com sede em São Paulo e Rio desde 2025."
+    },
+    "sections": {
+      "livingRoom": {
+        "title": "Sala de estar",
+        "cta": "Compre aqui"
+      },
+      "bedroom": {
+        "title": "Quarto",
+        "cta": "Compre aqui"
+      },
+      "kitchen": {
+        "title": "Cozinha",
+        "cta": "Compre aqui"
+      }
+    },
+    "products": {
+      "title": "Nossos produtos",
+      "loading": "Carregando produtos...",
+      "error": "Erro ao carregar conteúdo."
+    },
+    "benefits": {
+      "shipping": {
+        "title": "Frete grátis",
+        "desc": "Compras acima de R$ 200"
+      },
+      "warranty": {
+        "title": "Garantia",
+        "desc": "30 dias de garantia"
+      },
+      "security": {
+        "title": "Segurança",
+        "desc": "Seguro pela CAIXA"
+      },
+      "support": {
+        "title": "Suporte 24/7",
+        "desc": "Suporte por email ou telefone"
+      }
+    },
+    "promotion": {
+      "highlight": "PROMOÇÃO ATÉ 35% OFF",
+      "title": "Diversos novos preços reduzidos!",
+      "desc": "Está mais acessível do que nunca renovar todos os ambientes da sua casa com muito estilo.",
+      "cta": "Compre aqui"
+    }
+  },
+
+  "header": {
+    "brand": "3legant",
+    "menu": {
+      "home": "Home",
+      "categories": "Categorias",
+      "products": "Produtos"
+    },
+    "cart": "Carrinho",
+    "login": "Login",
+    "logout": "Sair",
+    "languages": {
+      "portuguese": "Português",
+      "english": "Inglês"
+    }
+  }
+}
