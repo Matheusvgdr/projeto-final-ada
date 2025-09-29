@@ -26,7 +26,7 @@ Os testes são escritos com Jasmine e executados via Karma. Para rodar os testes
 npm test
 ```
 
-## 📡 Dependência do Backend (Test API)
+## 📡 Dependência do Backend (API de produtos)
 
 Este projeto depende da [API de produtos](https://github.com/Matheusvgdr/api-projeto-final-ada) para funcionar corretamente.  
 Certifique-se de iniciar o backend antes de rodar o frontend.
