@@ -14,7 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
 import { UsuarioService } from '../../services/usuario.service';
 import { UsuarioRequest } from '../../../core/models/request/usuario.request';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { RotasEnum } from '../../../core/enums/rotas.enum';
 
 @Component({
   selector: 'app-cadastro',
@@ -46,7 +47,8 @@ export class CadastroComponent {
 
   constructor(
     private readonly messageService: MessageService,
-    private readonly usuarioService: UsuarioService
+    private readonly usuarioService: UsuarioService,
+    private readonly router: Router
   ) {}
 
   exibirToast() {
@@ -66,9 +68,9 @@ export class CadastroComponent {
     };
     this.usuarioService.cadastrarUsuario(novoUsuario).subscribe({
       next: (resultado) => {
-        console.log('teste');
         
         this.exibirToast();
+        this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN])
       },
     });
   }

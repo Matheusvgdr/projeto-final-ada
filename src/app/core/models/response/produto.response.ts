@@ -1,5 +1,5 @@
 export class ProdutoResponse {
-  public id: number;
+  id: any;
   titulo: string;
   descricao: string;
   dataCriacao?: string;

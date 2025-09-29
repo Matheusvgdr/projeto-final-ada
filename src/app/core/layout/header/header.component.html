@@ -42,7 +42,7 @@
           panelStyleClass="custom-dropdown-panel"
         >
           <ng-template pTemplate="selectedItem">
-            <lucide-angular [img]="iconeIdioma"></lucide-angular>
+            <lucide-angular [img]="iconeIdioma" class="w-5"></lucide-angular>
           </ng-template>
 
           <ng-template let-option pTemplate="item">
@@ -54,7 +54,7 @@
         (click)="navegar(rotaCarrinho)"
         class="flex items-center gap-1 cursor-pointer"
       >
-        <lucide-angular [img]="carrinho"></lucide-angular>
+        <lucide-angular [img]="carrinho" class="w-5"></lucide-angular>
         @if ((itensCarrinho$ | async) != 0) {
         <div
           class="w-6 h-6 animate-bounce rounded-full bg-indigo-500 flex items-center justify-center text-[10px] font-semibold text-white"
@@ -63,6 +63,21 @@
         </div>
         }
       </button>
+      @if (verificarUsuarioLogado) {
+      <button
+        (click)="visibilidade = false; sair()"
+        class="cursor-pointer pl-3 flex items-center justify-center"
+      >
+        <lucide-angular [img]="iconeSair" class="w-5"></lucide-angular>
+      </button>
+      } @else {
+      <button
+        (click)="visibilidade = false; sair()"
+        class="cursor-pointer pl-3 flex items-center justify-center"
+      >
+        <lucide-angular [img]="login" class="w-5"></lucide-angular>
+      </button>
+      }
     </div>
   </header>
 </div>
@@ -112,7 +127,7 @@
       </button>
       } @else {
       <button
-        (click)="visibilidade = false; navegar(rotaLogin)"
+        (click)="visibilidade = false; sair()"
         class="py-[12px] cursor-pointer w-full bg-blue-500 border-none rounded-[8px] text-white font-bold text-[14px] flex items-center gap-3 justify-center"
       >
         Login

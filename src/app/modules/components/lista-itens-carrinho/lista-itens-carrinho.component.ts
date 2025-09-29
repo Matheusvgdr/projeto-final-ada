@@ -36,4 +36,5 @@ export class ListaItensCarrinhoComponent {
   navegar() {
     this.router.navigate([RotasEnum.PAGAMENTO]);
   }
+  
 }

@@ -8,7 +8,8 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { Toast } from 'primeng/toast';
 import { AuthService } from '../../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { RotasEnum } from '../../../core/enums/rotas.enum';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class LoginComponent {
     senha: ['', Validators.required],
   });
 
-  constructor(private readonly messageService: MessageService, private readonly authService: AuthService) {}
+  constructor(private readonly messageService: MessageService, private readonly authService: AuthService, private readonly router: Router) {}
 
   exibirToast() {
     this.messageService.add({
@@ -43,6 +44,7 @@ export class LoginComponent {
     this.authService.realizarLogin(valorForm.email as string, valorForm.senha as string).subscribe({
       next: (resultado) => {
         this.exibirToast();
+        this.router.navigate([RotasEnum.HOME])
       }
     });
   }

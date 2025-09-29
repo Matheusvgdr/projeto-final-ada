@@ -47,7 +47,7 @@ export class HeaderComponent {
 
   itensCarrinho$: Observable<number>;
 
-  rotaLogin = RotasEnum.LOGIN;
+  rotaLogin = [RotasEnum.NAO_LOGADO, RotasEnum.LOGIN];
   rotaCarrinho = RotasEnum.CARRINHO;
   idiomaAtual = 'pt-br';
 
@@ -76,7 +76,7 @@ export class HeaderComponent {
   console.log(this.itensMenu)
   }
 
-  navegar(rota: RotasEnum) {
+  navegar(rota: RotasEnum | RotasEnum[]) {
     this.router.navigate([rota]);
   }
 
@@ -86,7 +86,7 @@ export class HeaderComponent {
 
   sair() {
     this.authService.realizarLogout();
-    this.router.navigate([RotasEnum.LOGIN]);
+    this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN]);
   }
 
   mudarIdioma(idioma: any) {

@@ -1,64 +1,94 @@
+<div
+  class="xl:flex xl:items-center xl:justify-center lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center"
+>
+  <section
+    class="flex flex-col gap-8 w-full leading-tight xl:gap-[40px] lg:gap-[40px] xl:flex-row lg:flex-row md:items-center sm:items-center"
+  >
+    <div
+      class="bg-[url('/img/bg-login.svg')] h-[380px] w-full xl:w-1/2 lg:w-1/2 xl:h-screen lg:h-screen bg-cover bg-center bg-no-repeat"
+    ></div>
+    <div
+      class="px-[32px] flex flex-col gap-8 xl:w-3/8 lg:w-3/7 xl:h-screen lg:h-screen xl:justify-center lg:justify-center md:w-2/3 sm:w-3/4"
+    >
+      <div class="flex flex-col gap-1">
+        <p class="text-[34px] xl:text-[40px] lg:text-[40px] font-bold">
+          Cadastro
+        </p>
+        <span class="text-[14px] xl:text-[18px] lg:text-[18px]"
+          >Já possui uma conta?
+          <a
+            routerLink="/nao-logado/login"
+            class="font-semibold text-emerald-500"
+            >Entre aqui</a
+          ></span
+        >
+      </div>
 
-
-<div class="xl:flex xl:items-center xl:justify-center lg:flex lg:items-center lg:justify-center md:flex md:items-center md:justify-center">
-  <section class="flex flex-col gap-8 w-full leading-tight xl:gap-[40px] lg:gap-[40px] xl:flex-row lg:flex-row md:items-center sm:items-center ">
-    <div class="bg-[url('/img/bg-login.svg')] h-[380px] w-full xl:w-1/2 lg:w-1/2 xl:h-screen lg:h-screen bg-cover bg-center bg-no-repeat"></div>
-    <div class="px-[32px] flex flex-col gap-8 xl:w-3/8 lg:w-3/7 xl:h-screen lg:h-screen xl:justify-center lg:justify-center md:w-2/3 sm:w-3/4">
-        <div class="flex flex-col gap-1">
-            <p class="text-[34px] xl:text-[40px] lg:text-[40px] font-bold">Cadastro</p>
-            <span class="text-[14px] xl:text-[18px] lg:text-[18px]">Já possui uma conta? <a routerLink="/login" class="font-semibold text-emerald-500">Entre aqui</a></span>
-        </div>
-
-        <form [formGroup]="formCadastro" class="flex flex-col gap-4" >
-          <p-floatlabel variant="on" >
-            <input
-              class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
-              [fluid]="true"
-              pInputText
-              formControlName="nome"
-              id="nome"
-              autocomplete="off"
-            />
-            <label class="!text-[12px] xl:!text-[14px] lg:!text-[14px]" for="on_label">Nome</label>
-          </p-floatlabel>
-          <p-floatlabel variant="on" >
-            <input
-              class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
-              [fluid]="true"
-              pInputText
-              formControlName="email"
-              id="email"
-              autocomplete="off"
-            />
-            <label class="!text-[12px] xl:!text-[14px] lg:!text-[14px]" for="on_label">Email</label>
-          </p-floatlabel>
-          <p-floatlabel variant="on" >
-            <input
-              class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
-              [fluid]="true"
-              pInputText
-              type="password"
-              formControlName="senha"
-              id="senha"
-              autocomplete="off"
-            />
-            <label class="!text-[12px] xl:!text-[14px] lg:!text-[14px]" for="on_label">Senha</label>
-          </p-floatlabel>
-          <button
-          (click)="cadastrarUsuario()"
-            [disabled]="formCadastro.invalid"
-            [ngClass]="{
-              'bg-zinc-700 hover:bg-zinc-900': formCadastro.valid,
-              'bg-gray-300 cursor-not-allowed': formCadastro.invalid
-            }"
-            class="py-[12px] flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+      <form [formGroup]="formCadastro" class="flex flex-col gap-4">
+        <p-floatlabel variant="on">
+          <input
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
+            [fluid]="true"
+            pInputText
+            formControlName="nome"
+            id="nome"
+            autocomplete="off"
+          />
+          <label
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px]"
+            for="on_label"
+            >Nome</label
           >
-            Finalizar cadastro
-            <lucide-angular [img]="pagamento"></lucide-angular>
-          </button>
-        </form>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
+            [fluid]="true"
+            pInputText
+            formControlName="email"
+            id="email"
+            autocomplete="off"
+          />
+          <label
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px]"
+            for="on_label"
+            >Email</label
+          >
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px] !py-3 xl:!py-4 lg:!py-4 !px-2 xl:!px-3 lg:!px-3"
+            [fluid]="true"
+            pInputText
+            type="password"
+            formControlName="senha"
+            id="senha"
+            autocomplete="off"
+          />
+          <label
+            class="!text-[12px] xl:!text-[14px] lg:!text-[14px]"
+            for="on_label"
+            >Senha</label
+          >
+        </p-floatlabel>
 
-
+        <span class="text-[10px] xl:text-[12px]"
+          ><a routerLink="/" class="font-semibold text-blue-500">Clique aqui</a
+          >, caso queira entrar sem logar</span
+        >
+        <button
+          (click)="cadastrarUsuario()"
+          [disabled]="formCadastro.invalid"
+          [ngClass]="{
+            'bg-zinc-700 hover:bg-zinc-900': formCadastro.valid,
+            'bg-gray-300 cursor-not-allowed': formCadastro.invalid
+          }"
+          class="py-[12px] flex items-center justify-center gap-3 cursor-pointer hover:-translate-y-1 duration-500 w-full border-none rounded-[8px] text-white font-bold text-[14px] col-start-1 col-end-5"
+        >
+          Finalizar cadastro
+          <lucide-angular [img]="pagamento"></lucide-angular>
+        </button>
+      </form>
     </div>
   </section>
 </div>

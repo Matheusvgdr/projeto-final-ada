@@ -14,7 +14,9 @@
         <p class="text-[34px] xl:text-[40px] lg:text-[40px] font-bold">Login</p>
         <span class="text-[14px] xl:text-[18px] lg:text-[18px]"
           >Não possui uma conta?
-          <a routerLink="/cadastro" class="font-semibold text-emerald-500"
+          <a
+            routerLink="/nao-logado/cadastro"
+            class="font-semibold text-emerald-500"
             >Cadastre-se</a
           ></span
         >
@@ -52,6 +54,10 @@
             >Senha</label
           >
         </p-floatlabel>
+        <span class="text-[10px] xl:text-[12px]"
+          ><a routerLink="/" class="font-semibold text-blue-500">Clique aqui</a
+          >, caso queira entrar sem logar</span
+        >
         <button
           (click)="realizarLogin()"
           [disabled]="formLogin.invalid"

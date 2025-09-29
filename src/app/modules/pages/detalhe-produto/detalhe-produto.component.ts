@@ -110,7 +110,7 @@ export class DetalheProdutoComponent {
   }
 
   navegarParaLogin(){
-    this.router.navigate([RotasEnum.LOGIN])
+    this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN])
   }
 
   private readonly _formBuilder = inject(FormBuilder);

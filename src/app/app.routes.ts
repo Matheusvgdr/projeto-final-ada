@@ -9,38 +9,43 @@ import { LoginComponent } from './modules/pages/login/login.component';
 import { CadastroComponent } from './modules/pages/cadastro/cadastro.component';
 import { AdministrarProdutoComponent } from './modules/pages/administrar-produto/administrar-produto.component';
 import { authGuard } from './core/guards/auth.guard';
+import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
-    path: RotasEnum.HOME,
-    component: HomeComponent,
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: RotasEnum.HOME,
+        component: HomeComponent,
+      },
+      {
+        path: RotasEnum.ADMINISTRAR_PRODUTOS,
+        component: AdministrarProdutoComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: `${RotasEnum.DETALHE_PRODUTO}/:id`,
+        component: DetalheProdutoComponent,
+      },
+      {
+        path: RotasEnum.CARRINHO,
+        component: CarrinhoComponent,
+      },
+      {
+        path: RotasEnum.PAGAMENTO,
+        component: PagamentoComponent,
+      },
+    ],
   },
   {
-    path: RotasEnum.CADASTRO,
-    component: CadastroComponent,
-  },
-  {
-    path: RotasEnum.LOGIN,
-    component: LoginComponent,
-  },
-  {
-    path: RotasEnum.ADMINISTRAR_PRODUTOS,
-    component: AdministrarProdutoComponent,
-    canActivate: [authGuard],
-    
-
-    
-  },
-  {
-    path: `${RotasEnum.DETALHE_PRODUTO}/:id`,
-    component: DetalheProdutoComponent,
-  },
-  {
-    path: RotasEnum.CARRINHO,
-    component: CarrinhoComponent,
-  },
-  {
-    path: RotasEnum.PAGAMENTO,
-    component: PagamentoComponent,
+    path: RotasEnum.NAO_LOGADO,
+    component: AuthLayoutComponent,
+    children: [
+      { path: RotasEnum.LOGIN, component: LoginComponent },
+      { path: RotasEnum.CADASTRO, component: CadastroComponent },
+    ],
   },
 ];

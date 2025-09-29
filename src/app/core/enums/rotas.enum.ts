@@ -5,5 +5,6 @@ export enum RotasEnum{
     PAGAMENTO = 'pagamento',
     LOGIN = 'login',
     CADASTRO = 'cadastro',
-    ADMINISTRAR_PRODUTOS = 'administrar-produtos'
+    ADMINISTRAR_PRODUTOS = 'administrar-produtos',
+    NAO_LOGADO = 'nao-logado'
 }
