@@ -26,15 +26,18 @@ Os testes são escritos com Jasmine e executados via Karma. Para rodar os testes
 npm test
 ```
 
-## Simulando o backend com JSON-Server
+## 📡 Dependência do Backend (Test API)
 
-O projeto utiliza o **json-server** para simular a API de produtos e reviews.
+Este projeto depende da [API de produtos](https://github.com/Matheusvgdr/api-projeto-final-ada) para funcionar corretamente.  
+Certifique-se de iniciar o backend antes de rodar o frontend.
 
-### Executando
+### Executando o backend
 
-O `json-server` já está listado nas dependências do projeto. Então para executar basta rodar o comando
+Clone o repositório da API e inicie o servidor:
 
 ```bash
-npx json-server db.json
-
+git clone https://github.com/Matheusvgdr/api-projeto-final-ada.git
+cd api-projeto-final-ada
+npm install
+npm run dev
 ```
