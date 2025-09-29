@@ -57,7 +57,8 @@
   [style]="{ width: '23rem' }"
 >
   <span class="block mb-8"
-    >Atenção, para adicionar um item ao carrinho é necessário estar logado, gostaria de ser redirecionado para a tela de login?</span
+    >Atenção, para adicionar um item ao carrinho é necessário estar logado,
+    gostaria de ser redirecionado para a tela de login?</span
   >
   <div class="flex gap-3 w-full">
     <button
@@ -127,6 +128,19 @@
       />
       <label class="!text-[12px]" for="on_label">Valor</label>
     </p-floatlabel>
+    <div
+      class="col-start-1 col-end-10 h-[200px] flex items-center justify-center rounded-xl bg-cover bg-center bg-no-repeat border border-zinc-300"
+      [style.backgroundImage]="
+        'url(' + (imagemPreview() || produto()?.imagem) + ')'
+      "
+    >
+      <span
+        *ngIf="!imagemPreview() && !produto()?.imagem"
+        class="text-zinc-400"
+      >
+        Nenhuma imagem selecionada
+      </span>
+    </div>
     <p-floatlabel variant="on" class="col-start-1 col-end-10">
       <input
         class="!text-[12px]"

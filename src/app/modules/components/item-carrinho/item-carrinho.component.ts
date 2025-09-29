@@ -1,7 +1,7 @@
 import { Component, computed, inject, Input } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ProdutoResponse } from '../../../core/models/response/produto.response';
-import { LucideAngularModule, Star } from 'lucide-angular';
+import { CircleXIcon, LucideAngularModule, Star, X } from 'lucide-angular';
 import { removerProdutoCarrinho } from '../../store/carrinho.actions';
 import { Store } from '@ngrx/store';
 
@@ -13,6 +13,8 @@ import { Store } from '@ngrx/store';
 })
 export class ItemCarrinhoComponent {
   estrela = Star;
+  iconeRemover = CircleXIcon;
+  
   @Input()
   produto: ProdutoResponse = new ProdutoResponse();
 

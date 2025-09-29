@@ -36,10 +36,9 @@ export class ProdutoComponent {
   private readonly router = inject(Router);
   private readonly produtoService = inject(ProdutoService);
   private readonly authService = inject(AuthService);
-  constructor(){
+  constructor() {
     this.usuarioAdmin = this.authService.verificarUsuarioAdmin();
     console.log(this.usuarioAdmin);
-    
   }
 
   navegar(produtoId: number) {
@@ -52,10 +51,10 @@ export class ProdutoComponent {
 
   confirmarDelecao() {
     this.produtoService.deletarProduto(this.produto.id).subscribe({
-      next: (resultado) => {
+      next: () => {
         this.fecharModal();
       },
-      error: (erro) => {
+      error: () => {
         this.fecharModal();
       },
     });

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   CirclePlus,
   LucideAngularModule,
@@ -72,9 +72,22 @@ export class DetalheProdutoComponent {
   private readonly produtoService = inject(ProdutoService);
   private readonly store = inject(Store);
 
-  constructor(private readonly messageService: MessageService, private readonly authService: AuthService, private readonly router: Router) {
+  constructor(
+    private readonly messageService: MessageService,
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {
     this.usuarioAdmin = this.authService.verificarUsuarioAdmin();
-    
+  }
+
+  imagemPreview = signal<string | null>(null);
+
+  ngOnInit() {
+    this.formEdicao
+      .get('imagem')
+      ?.valueChanges.subscribe((valor: string | null) => {
+        this.imagemPreview.set(valor || null);
+      });
   }
 
   public produto = toSignal(
@@ -87,30 +100,32 @@ export class DetalheProdutoComponent {
       )
     )
   );
+
   arrayEstrelas = computed(() => {
     const produto = this.produto();
     return produto?.estrelas ? Array(produto.estrelas).fill(0) : [];
   });
 
   adicionarProdutoCarrinho() {
-    if(this.authService.verificarAutenticacao()){
-      this.store.dispatch( CarrinhoActions.adicionarProdutoCarrinho({ produto: this.produto() }));
-    }else{
+    if (this.authService.verificarAutenticacao()) {
+      this.store.dispatch(
+        CarrinhoActions.adicionarProdutoCarrinho({ produto: this.produto() })
+      );
+    } else {
       this.abrirModalAcesso();
     }
-    
   }
 
-  abrirModalAcesso(){
+  abrirModalAcesso() {
     this.visibilidadeModalAcesso = true;
   }
 
-  fecharModalAcesso(){
+  fecharModalAcesso() {
     this.visibilidadeModalAcesso = false;
   }
 
-  navegarParaLogin(){
-    this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN])
+  navegarParaLogin() {
+    this.router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN]);
   }
 
   private readonly _formBuilder = inject(FormBuilder);
@@ -135,6 +150,8 @@ export class DetalheProdutoComponent {
     this.formEdicao.get('valor')?.setValue(produto.valor);
     this.formEdicao.get('imagem')?.setValue(produto.imagem);
     this.formEdicao.get('desconto')?.setValue(produto.desconto);
+
+    this.imagemPreview.set(produto.imagem);
     this.visible = true;
   }
 
@@ -153,15 +170,14 @@ export class DetalheProdutoComponent {
 
     this.produtoService.editarProduto(produtoDto, this.produto().id).subscribe({
       next: (resultado) => {
+        this.router.navigate([RotasEnum.ADMINISTRAR_PRODUTOS])
         this.fecharModal();
       },
-      error: (error) => {
-
-      }
+      error: (error) => {},
     });
   }
 
-  fecharModal(){
+  fecharModal() {
     this.visible = false;
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { ProdutoResponse } from '../../core/models/response/produto.response';
 import { ENVIRONMENT } from '../../environment/environment';
 import { ControllersEnum } from '../../core/enums/controllers.enum';
@@ -51,36 +51,51 @@ export class ProdutoService {
       desconto: 15,
     },
   ];
+  // Signal que guarda os produtos
+  produtos = signal<ProdutoResponse[]>([]);
 
-  buscarProdutos(): Observable<ProdutoResponse[]> {
-    return this.http.get<ProdutoResponse[]>(this.REQUISICAO).pipe(
-      catchError((error) => {
-        return of(this.listaFixa);
-      })
-    );
+  buscarProdutos() {
+    this.http.get<ProdutoResponse[]>(this.REQUISICAO).subscribe((lista) => {
+      this.produtos.set(lista);
+    });
+  }
+
+  criarProduto(produto: ProdutoRequest) {
+    return this.http
+      .post<ProdutoResponse>(this.REQUISICAO, produto)
+      .subscribe((novo) => {
+        this.produtos.update((atual) => [novo, ...atual]);
+      });
   }
 
   buscarProdutosPorId(produtoId: number): Observable<ProdutoResponse> {
-    let params = new HttpParams();
-    params = params.set('id', produtoId.toString());
-    return this.http.get<ProdutoResponse>(this.REQUISICAO, { params }).pipe(
-      catchError((error) => {
-        return of(
-          this.listaFixa.find((item) => item.id == produtoId) as ProdutoResponse
-        );
-      })
-    );
+    return this.http
+      .get<ProdutoResponse>(`${this.REQUISICAO}/${produtoId}`)
+      .pipe(
+        catchError((error) => {
+          return of(
+            this.listaFixa.find(
+              (item) => item.id == produtoId
+            ) as ProdutoResponse
+          );
+        })
+      );
   }
 
-  criarProduto(request: ProdutoRequest): Observable<ProdutoResponse>{
-    return this.http.post<ProdutoResponse>(this.REQUISICAO, request);
-  }
-
-  editarProduto(request: ProdutoRequest, id: number): Observable<ProdutoResponse> {
+  editarProduto(
+    request: ProdutoRequest,
+    id: number
+  ): Observable<ProdutoResponse> {
     return this.http.put<ProdutoResponse>(`${this.REQUISICAO}/${id}`, request);
   }
 
-  deletarProduto(ìdProduto: number): Observable<any> {
-    return this.http.delete<any>(`${this.REQUISICAO}/${ìdProduto}`);
+  deletarProduto(idProduto: number): Observable<any> {
+    return this.http.delete<any>(`${this.REQUISICAO}/${idProduto}`).pipe(
+      tap(() => {
+        this.produtos.update((listaAtual) =>
+          listaAtual.filter((p) => p.id !== idProduto)
+        );
+      })
+    );
   }
 }

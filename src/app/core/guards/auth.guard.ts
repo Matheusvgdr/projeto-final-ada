@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (!authService.verificarAutenticacao()) {
-    router.navigate([RotasEnum.LOGIN]);
+    router.navigate([RotasEnum.NAO_LOGADO, RotasEnum.LOGIN]);
     return false;
   }
 
